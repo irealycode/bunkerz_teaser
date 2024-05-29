@@ -52,7 +52,7 @@ function Home() {
                 </div>
                 {/* <img src="/static/addpost.png" style={{height:24,width:24,position:'absolute',right:27,opacity:0.7,cursor:'pointer'}} /> */}
                 <div className="addpost" style={{position:'absolute',right:15}} >
-                    <button>Add post</button>
+                    <button onClick={()=>window.location.assign("/addpost")} >Add post</button>
                 </div>
         </div>
         <div style={{width:200,height:height-100,backgroundColor:'#F6F3EF',position:'absolute',top:100,left:0,zIndex:-1}} >

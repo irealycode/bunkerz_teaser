@@ -1,0 +1,17 @@
+/* Override Quill toolbar button hover color */
+.ql-toolbar .ql-formats button:hover,
+.ql-toolbar .ql-formats button.ql-active {
+  color: #f90 !important; /* Change icon color on hover */
+  background-color: transparent !important; /* Keep background transparent or as desired */
+}
+
+/* Optionally, you can target specific buttons, like bold or italic */
+.ql-toolbar .ql-bold:hover,
+.ql-toolbar .ql-bold.ql-active {
+  color: #f90 !important;
+}
+
+.ql-toolbar .ql-italic:hover,
+.ql-toolbar .ql-italic.ql-active {
+  color: #f90 !important;
+}

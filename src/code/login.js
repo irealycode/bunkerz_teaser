@@ -8,7 +8,7 @@ function Login() {
 
   return (
     <div style={{width:'100%',height:height,display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden',position:'relative'}} >
-        <img onClick={()=>window.location="/"} src="/static/bunker.png" style={{height:60,width:110,position:'absolute',top:0,cursor:'pointer'}} />
+        <img onClick={()=>window.location.assign("/")} src="/static/bunker.png" style={{height:60,width:110,zIndex:5,position:'absolute',top:0,cursor:'pointer'}} />
         
         <div style={{position:'relative',height:'60%',width:height*0.6,border:'3px solid #545049',overflow:'hidden',zIndex:2,borderRadius:16,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} >
             <p style={{color:'#545049',fontFamily:'ml',fontSize:37,zIndex:1,marginBottom:20}} >Login</p>
@@ -20,8 +20,8 @@ function Login() {
                 <input placeholder="Password..." type={showPwd?"normal":"password"} style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
                 <img onClick={()=>setShowPwd(!showPwd)} src={showPwd?"/static/eyeclose.png":"/static/eyeopen.png"} style={{height:24,width:24,opacity:0.7,cursor:'pointer'}} />
             </div>
-            <div className="login_submit" style={{display:'flex',alignItems:'center',justifyContent:'center',marginTop:20,height:45,borderRadius:5,zIndex:1,padding:'0px 20px',cursor:'pointer'}} >
-                <p style={{fontFamily:'mb',fontSize:22,zIndex:1}} >Next</p>
+            <div className="login_submit" style={{display:'flex',alignItems:'center',backgroundColor:'#545049',justifyContent:'center',marginTop:20,height:45,borderRadius:5,zIndex:1,padding:'0px 20px',cursor:'pointer'}} >
+                <p style={{fontFamily:'mb',color:'white',fontSize:22,zIndex:1}} >Next</p>
             </div>
             <a href="/register" style={{color:'#545049',fontFamily:'mc',fontSize:16,zIndex:1,marginTop:20,cursor:'pointer'}} >New with us?</a>
             {/* <input placeholder="Password..." style={{width:'80%',height:45,fontFamily:'mc',fontSize:19,marginTop:20,borderRadius:10,border:'3px solid #545049',color:'rgba(0,0,0,0.8)',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} /> */}

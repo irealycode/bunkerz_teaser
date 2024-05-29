@@ -8,25 +8,25 @@ function Register() {
 
   return (
     <div style={{width:'100%',height:height,display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden',position:'relative'}} >
-        <img onClick={()=>window.location="/"} src="/static/bunker.png" style={{height:60,width:110,position:'absolute',top:0,cursor:'pointer'}} />
+        <img onClick={()=>window.location="/"} src="/static/bunker.png" style={{height:60,width:110,zIndex:5,position:'absolute',top:0,cursor:'pointer'}} />
         
-        <div style={{position:'relative',height:'60%',minWidth:450,width:height*0.6,border:'3px solid #545049',overflow:'hidden',zIndex:2,borderRadius:16,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} >
+        <div style={{position:'relative',minWidth:450,width:height*0.6,border:'3px solid #545049',overflow:'hidden',padding:'15px 0px',zIndex:2,borderRadius:16,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} >
             <p style={{color:'#545049',fontFamily:'ml',fontSize:37,zIndex:1,marginBottom:20}} >Welcome,</p>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'80%',zIndex:1,position:'relative',height:45,padding:'0px 20px',marginBottom:20}} >
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'90%',zIndex:1,position:'relative',height:45,marginBottom:20}} >
                 <input placeholder="First name" style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',height:45,backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)',borderRadius:10,border:'3px solid #545049',width:'49%',outline:'none',boxSizing:'border-box',padding:'0px 20px',position:'absolute',left:0}} />
                 <input placeholder="Last name" style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',height:45,backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)',borderRadius:10,border:'3px solid #545049',width:'49%',outline:'none',boxSizing:'border-box',padding:'0px 20px',position:'absolute',right:0}} />
 
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'80%',height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
-                <input placeholder="Email..." style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',boxSizing:'border-box',width:'90%',height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
+                <input placeholder="Email..." style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',height:45,backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
                 <img src="/static/email.png" style={{height:24,width:24,opacity:0.7}} />
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'80%',marginTop:20,height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
-                <input placeholder="Password..." type={showPwd?"normal":"password"} style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',boxSizing:'border-box',width:'90%',marginTop:20,height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
+                <input placeholder="Password..." type={showPwd?"normal":"password"} style={{fontFamily:'mc',height:45,fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
                 <img onClick={()=>setShowPwd(!showPwd)} src={showPwd?"/static/eyeclose.png":"/static/eyeopen.png"} style={{height:24,width:24,opacity:0.7,cursor:'pointer'}} />
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'80%',marginTop:20,height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
-                <input placeholder="Confirm Password..." type={showPwd?"normal":"password"} style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',boxSizing:'border-box',width:'90%',marginTop:20,height:45,borderRadius:10,border:'3px solid #545049',zIndex:1,padding:'0px 20px',backdropFilter:'blur(50px)',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
+                <input placeholder="Confirm Password..." type={showPwd?"normal":"password"} style={{fontFamily:'mc',height:45,fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
                 <img onClick={()=>setShowPwd(!showPwd)} src={showPwd?"/static/eyeclose.png":"/static/eyeopen.png"} style={{height:24,width:24,opacity:0.7,cursor:'pointer'}} />
             </div>
             <div className="login_submit" style={{display:'flex',alignItems:'center',backgroundColor:'#545049',justifyContent:'center',marginTop:20,height:45,borderRadius:5,zIndex:1,padding:'0px 20px',cursor:'pointer'}} >

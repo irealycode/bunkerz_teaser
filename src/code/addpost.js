@@ -8,7 +8,17 @@ function Addpost() {
     const [openAccWindow,setOpenAccWindow] = React.useState(false)
     const [text, setText] = React.useState(null);
 
-    console.log(text)
+
+
+    const modules = {
+        toolbar: [
+          [{ 'header': [1, 2, false] }],
+          ['bold', 'italic', 'underline'],
+          ['image']
+        ]
+      };   
+      
+      console.log(text)
   return (
     <div style={{width:'100%',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'start',overflow:'hidden',position:'relative'}} >
         <div style={{width:'100%',height:60,backgroundColor:'white',display:'flex',alignItems:'center',borderBottom:'1px solid #CAC2B6'}} >
@@ -45,7 +55,7 @@ function Addpost() {
         </div>
         
 
-        <div style={{width:'20%',marginTop:90,borderRadius:20,display:'flex',alignSelf:'center',alignItems:'start',justifyContent:'center',flexDirection:'column',}} >
+        <div style={{maxWidth:'20%',minWidth:600,marginTop:90,borderRadius:20,display:'flex',alignSelf:'center',alignItems:'start',justifyContent:'center',flexDirection:'column',}} >
             <h2 style={{fontFamily:'mb',fontSize:30,margin:'0px 0px 0px 0px',color:'rgba(0,0,0,0.8)'}} >Title</h2>
             <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',boxSizing:'border-box',height:45,borderRadius:0,border:'1px solid rgba(0,0,0,0.23)',zIndex:1,padding:'0px 20px',backgroundColor:'rgba(255, 255, 255, 0.3)'}} >
                 <input placeholder="Title.." style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.8)',backgroundColor:'rgba(0,0,0,0)',width:'100%',border:0,outline:'none'}} />
@@ -53,7 +63,7 @@ function Addpost() {
             </div>
             <h2 style={{fontFamily:'mb',fontSize:30,margin:'20px 0px 0px 0px',color:'rgba(0,0,0,0.8)'}} >Subject</h2>
 
-            <ReactQuill style={{width:'100%'}} value={text} placeholder="Khet oussama..." onChange={(value)=>{setText(value)}} />
+            <ReactQuill style={{width:'100%'}} value={text} placeholder="Khet oussama..." onChange={(value)=>{setText(value)}} modules={modules} />
             <div className="login_submit" style={{display:'flex',alignItems:'center',backgroundColor:'#f90',justifyContent:'center',marginTop:70,alignSelf:'center',height:45,borderRadius:5,zIndex:1,padding:'0px 20px',cursor:'pointer'}} >
                 <p style={{fontFamily:'mb',color:'white',fontSize:22,zIndex:1}} >Next</p>
             </div>

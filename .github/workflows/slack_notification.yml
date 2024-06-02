@@ -1,0 +1,14 @@
+name: Slack Notification
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H "Content-type: application/json" --data "{\"message\":\"${{ github.event.head_commit.message }}\",\"commiter\":\"${{ github.actor }}\"}" $SLACK_WEBHOOK

@@ -35,7 +35,7 @@ function Teasers() {
         }else{
             return (
                 <div style={{width:'100%',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',overflow:'hidden',position:'relative'}} >
-                    <div style={{width:'100%',height:'100%',backdropFilter:'blur(6px)',backgroundColor:'rgba(255, 255, 255, 0.3)',position:'absolute',top:0,left:0,zIndex:10}} ></div>
+                    <div style={{width:'100%',height:'100%',backdropFilter:'blur(5px)',WebkitBackdropFilter:'blur(5px)',filter:'blur(5px)',backgroundColor:'rgba(255, 255, 255, 0.3)',position:'absolute',top:0,left:0,zIndex:10}} ></div>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',position:'absolute',zIndex:11,marginBottom:100}} >
                         <img src="/static/lock.png" style={{height:40,width:40,marginBottom:20,opacity:0.6}} />
                         <div onClick={()=>window.location.assign("/register")} className="login_submit" style={{display:'flex',alignItems:'center',backgroundColor:'#f90',justifyContent:'center',height:45,borderRadius:5,padding:'0px 20px',cursor:'pointer'}} >

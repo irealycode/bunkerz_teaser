@@ -291,7 +291,7 @@ function Posts({firstcall}) {
                                     {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                                 </div>
                         )
-                    }).reverse()
+                    })
                 }
                 </div>
                     

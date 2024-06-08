@@ -68,7 +68,7 @@ function Register() {
                         "password": pwd
                     }
                     try {
-                        const response = await fetch(`/api/user/signup`, {
+                        const response = await fetch(`http://localhost:8080/user/signup`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ function Register() {
                         "code": code
                     }
                     try {
-                        const response = await fetch(`/api/user/verify`, {
+                        const response = await fetch(`http://localhost:8080/user/verify`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

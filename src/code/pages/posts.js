@@ -21,7 +21,7 @@ function EditPost({setPost,article}) {
             formData.append('file', image);
             formData.append('type','post');
             try {
-                const response = await fetch(`http://${addr}:${port}/upload`,{
+                const response = await fetch(`/api/upload`,{
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json'
@@ -59,7 +59,7 @@ function EditPost({setPost,article}) {
                     "post_id":article.id
                   }
                 console.log('data:',data)
-                const response = await fetch(`http://${addr}:${port}/posts`, {
+                const response = await fetch(`/api/posts`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function Assurence({article,setShowAssure}){
                     "image_link": `./posts/${article.image_link}`,
                   }
                 console.log('data:',data)
-                const response = await fetch(`http://${addr}:${port}/posts`, {
+                const response = await fetch(`/api/posts`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ function Posts({firstcall}) {
         if (!firstcall) {
             firstcall++
             try {
-                const response = await fetch(`http://${addr}:${port}/posts`, {
+                const response = await fetch(`/api/posts`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ function Login() {
                     "password":pwd
                 }
                 try {
-                    const response = await fetch(`http://${addr}:${port}/user/login`, {
+                    const response = await fetch(`/api/user/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

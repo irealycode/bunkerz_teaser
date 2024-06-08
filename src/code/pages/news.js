@@ -21,7 +21,7 @@ function News({firstcall}) {
             firstcall++
             try {
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-                const response = await fetch(`http://${addr}:${port}/news`, {
+                const response = await fetch(`/api/news`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

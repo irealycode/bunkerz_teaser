@@ -24,7 +24,7 @@ function EditProfile({setShowEditProfile,setProfile,profile}) {
                     "lastName": lastname
                   }
                 console.log('data:',data)
-                const response = await fetch(`http://${addr}:${port}/user/profile`, {
+                const response = await fetch(`/api/user/profile`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function Profile() {
         if (!firstcall) {
             firstcall++
             try {
-                const response = await fetch(`http://${addr}:${port}/user/profile`, {
+                const response = await fetch(`/api/user/profile`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

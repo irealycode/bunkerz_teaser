@@ -109,7 +109,7 @@ export function AddPost({setPost}) {
             formData.append('file', image);
             formData.append('type','post');
             try {
-                const response = await fetch(`http://${addr}:${port}/upload`,{
+                const response = await fetch(`/api/upload`,{
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json'
@@ -145,7 +145,7 @@ export function AddPost({setPost}) {
                     "title": title
                   }
                 console.log('data:',data)
-                const response = await fetch(`http://${addr}:${port}/posts`, {
+                const response = await fetch(`/api/posts`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

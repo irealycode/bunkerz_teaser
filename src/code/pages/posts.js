@@ -284,8 +284,8 @@ function Posts({firstcall}) {
                         return(
                                 <div key={y} style={{width:'100%',maxWidth:570,boxSizing:'border-box',border:'1px solid #CAC2B6',borderRadius:10,position:'relative',paddingBottom:30,marginBottom:15,cursor:'pointer'}} onClick={()=>{setArticle(article);setSArticle(true)}} >
                                     <div style={{display:'flex',flexDirection:'row',marginLeft:10,alignItems:'center'}} >
-                                        <p style={{fontFamily:'mb',fontSize:27,marginTop:0,color:'#545049'}} >{article.title}</p>
-                                        <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',top:10,right:10}} >{date_num} on {hour}</p>
+                                        <p style={{fontFamily:'mb',fontSize:'1.7em',marginTop:10,color:'#545049'}} >{article.title}</p>
+                                        <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',bottom:0,right:10}} >{date_num} on {hour}</p>
                                     </div>
                                     <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',maxHeight:'2em',lineHeight:'1.2em',overflow:'hidden'}} >{article.body}</p>
                                     {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}

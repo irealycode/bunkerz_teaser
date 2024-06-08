@@ -203,7 +203,7 @@ export function ViewPost({article,setArticle,showArticle,height,owner}) {
 
                             </div>
                             <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',overflow:'hidden'}} >{article.body}</p>
-                            {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                            {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                         </div>:null}
 
                         {owner?<div style={{display:'flex',alignItems:'center',justifyContent:'end',width:'95%',maxWidth:570}} >
@@ -288,7 +288,7 @@ function Posts({firstcall}) {
                                             <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',top:10,right:10}} >{date_num} on {hour}</p>
                                         </div>
                                         <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',maxHeight:'2em',lineHeight:'1.2em',overflow:'hidden'}} >{article.body}</p>
-                                        {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                                        {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                                     </div>
                             )
                         }).reverse()

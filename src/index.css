@@ -33,16 +33,24 @@
     }
 
 
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+*::-webkit-scrollbar {
+display: none; /* Chrome, Safari, and Opera */
+}
+
 .router ul { 
     padding: 0; 
     list-style: none; 
     display: table;
-    width: 600px;
     text-align: center;
   }
 .router li { 
     display: table-cell; 
-    position: relative; 
+    width: 50px !important;
   }
 .router a,p {
     color: #77736b;
@@ -100,7 +108,7 @@
       border: 1px solid #CAC2B6;
       cursor: pointer;
       color: #545049;
-      border-radius: 30px;
+      border-radius: 10px;
       display: inline-block;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(.86, .01, .15, .99);
@@ -130,7 +138,7 @@
 
 .addpost button::before {
 	clip-path: circle(0.5% at 50% 50%);
-	background: #58401c;
+	background: #f90;
 	transition: 0.4s;
 	opacity: 1;
 }
@@ -147,6 +155,10 @@
 
 .account_window{
     transition: all 0.2s ease-in-out;
+}
+
+.viewpost{
+    transition: all 0.4s ease-in-out;
 }
 
 .register p {
@@ -182,3 +194,18 @@
 .login_submit:hover p{
     color: rgb(255, 185, 79);
 }
+
+
+.loader {
+    border: 5px solid rgba(0,0,0,.2);
+    border-top: 5px solid #a8a297;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

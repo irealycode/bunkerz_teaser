@@ -6,6 +6,8 @@ import NN from './code/404';
 import Login from './code/login';
 import Register from './code/register';
 import Addpost from './code/addpost';
+import Verify from './verify';
+import Profile from './code/profile';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/addpost" element={<Addpost />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NN />} />
         </Route>
       </Routes>

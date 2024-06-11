@@ -13,7 +13,7 @@ function EditProfile({setShowEditProfile,setProfile,profile}) {
     const [firstname,setFirstName] = React.useState('')
     const [loading,setLoading] = React.useState(0)
     const [lastname,setLastName] = React.useState('')
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
     const update = async() =>{
         if (firstname.trim()!='' && lastname.trim() != '' && token && loading !== 2) {
@@ -24,7 +24,7 @@ function EditProfile({setShowEditProfile,setProfile,profile}) {
                     "lastName": lastname
                   }
                 console.log('data:',data)
-                const response = await fetch(`/api/user/profile`, {
+                const response = await fetch(`http://localhost:8080/user/profile`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ function Profile() {
     const [showArticle,setSArticle] = React.useState(false)
     const [showEditProfile,setShowEditProfile] = React.useState(false)
 
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
 
     React.useEffect(()=>{
@@ -93,7 +93,7 @@ function Profile() {
         if (!firstcall) {
             firstcall++
             try {
-                const response = await fetch(`/api/user/profile`, {
+                const response = await fetch(`http://localhost:8080/user/profile`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function Profile() {
                                                 <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',top:10,right:10}} >{date_num} on {hour}</p>
                                             </div>
                                             <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',maxHeight:'2em',lineHeight:'1.2em',overflow:'hidden'}} >{article.body}</p>
-                                            {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                                            {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                                         </div>
                                 )
                             }).reverse():null

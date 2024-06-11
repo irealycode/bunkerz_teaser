@@ -5,7 +5,7 @@ function Teasers() {
     let width = window.innerWidth
 
     const [showPwd,setShowPwd] = React.useState(false)
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
     if (token) {
         return (

@@ -11,7 +11,7 @@ function Addpost() {
     const [text, setText] = React.useState(null);
     const [title, setTitle] = React.useState('');
     const [show, setShow] = React.useState(false);
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
 
 

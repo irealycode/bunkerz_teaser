@@ -2,16 +2,14 @@ import React from "react";
 import {addr,port} from '../imports/imp'
 
 
-let height = window.innerHeight
-let width = window.innerWidth
 
 
-function EditPost({setPost,article}) {
+function EditPost({setPost,article,width,height}) {
     const [image,setImage] = React.useState(null)
     const [loading,setLoading] = React.useState(0)
     const [title,setTitle] = React.useState(article.title)
     const [body,setBody] = React.useState(article.body)
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
 
 
@@ -21,7 +19,7 @@ function EditPost({setPost,article}) {
             formData.append('file', image);
             formData.append('type','post');
             try {
-                const response = await fetch(`/api/upload`,{
+                const response = await fetch(`http://localhost:8080/upload`,{
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json'
@@ -59,7 +57,7 @@ function EditPost({setPost,article}) {
                     "post_id":article.id
                   }
                 console.log('data:',data)
-                const response = await fetch(`/api/posts`, {
+                const response = await fetch(`http://localhost:8080/posts`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -112,10 +110,10 @@ function EditPost({setPost,article}) {
     )
 }
 
-function Assurence({article,setShowAssure}){
+function Assurence({article,setShowAssure,width,height}){
 
     const [loading,setLoading] = React.useState(0)
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
 
     const delete_post = async() =>{
             try {
@@ -124,7 +122,7 @@ function Assurence({article,setShowAssure}){
                     "image_link": `./posts/${article.image_link}`,
                   }
                 console.log('data:',data)
-                const response = await fetch(`/api/posts`, {
+                const response = await fetch(`http://localhost:8080/posts`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -167,9 +165,9 @@ function Assurence({article,setShowAssure}){
     )
 }
 
-export function ViewPost({article,setArticle,showArticle,height,owner}) {
+export function ViewPost({article,setArticle,showArticle,height,owner,width}) {
     owner=owner?owner:null
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
     const [assure,setShowAssure] = React.useState(false)
     const [editPost,setPost] = React.useState(false)
 
@@ -186,9 +184,9 @@ export function ViewPost({article,setArticle,showArticle,height,owner}) {
         return (
             <div className="viewpost" style={{width:'100%',height:height,display:'flex',flexDirection:'column',backgroundColor:'white',alignItems:'center',justifyContent:'center',overflowX:'hidden',overflowY:'scroll',position:'absolute',bottom:0,left:showArticle?'0%':'100%',zIndex:5}} >
                 
-                {assure?<Assurence setShowAssure={setShowAssure} article={article}  />:null}
+                {assure?<Assurence setShowAssure={setShowAssure} article={article} width={width} height={height} />:null}
 
-                {editPost?<EditPost setPost={setPost} article={article} />:null}
+                {editPost?<EditPost setPost={setPost} article={article} width={width} height={height} />:null}
                 <div style={{width:'100%',position:'absolute',top:40,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',overflow:'hidden'}} >
                     <div style={{width:'95%',maxWidth:570,marginBottom:20}} >
                         <img src="/static/back.png" style={{height:25,width:25,opacity:0.7,cursor:'pointer'}} onClick={()=>setArticle(false)} />
@@ -203,7 +201,7 @@ export function ViewPost({article,setArticle,showArticle,height,owner}) {
 
                             </div>
                             <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',overflow:'hidden'}} >{article.body}</p>
-                            {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                            {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                         </div>:null}
 
                         {owner?<div style={{display:'flex',alignItems:'center',justifyContent:'end',width:'95%',maxWidth:570}} >
@@ -226,8 +224,8 @@ export function ViewPost({article,setArticle,showArticle,height,owner}) {
 }
 
 
-function Posts({firstcall}) {
-    const token = window.sessionStorage.getItem('token')
+function Posts({firstcall,width,height}) {
+    const token = window.localStorage.getItem('token')
     
 
     const [showPwd,setShowPwd] = React.useState(false)
@@ -245,7 +243,7 @@ function Posts({firstcall}) {
         if (!firstcall) {
             firstcall++
             try {
-                const response = await fetch(`/api/posts`, {
+                const response = await fetch(`http://localhost:8080/posts`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -271,15 +269,21 @@ function Posts({firstcall}) {
             <div style={{width:'100%',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',position:'relative',overflow:'hidden'}} >
 
 
-                <ViewPost article={article} setArticle={setSArticle} showArticle={showArticle} />
+                <ViewPost article={article} setArticle={setSArticle} showArticle={showArticle} width={width} height={height} />
                 <div style={{overflowY:'scroll',height:height,marginTop:0,width:'95%',maxWidth:570}} >
                 <p style={{font:"30px/1.4 'Open Sans', arial, sans-serif",fontWeight:700,color:'#545049',marginTop:20}} >Community's posts</p>
 
                 {
                     Posts.map((article,y)=>{
                         const pub_date = new Date(article.created_at)
+                        
                         const date_num = pub_date.toDateString().slice(4)
-                        const hour = pub_date.toLocaleTimeString().slice(0,4) + ' ' + pub_date.toLocaleTimeString().slice(-2)
+                        let options = {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true
+                        };
+                        const hour = pub_date.toLocaleTimeString('en-US', options)
                         const imgHeight = width>=800?513:width*0.95*0.9
                         return(
                                 <div key={y} style={{width:'100%',maxWidth:570,boxSizing:'border-box',border:'1px solid #CAC2B6',borderRadius:10,position:'relative',paddingBottom:30,marginBottom:15,cursor:'pointer'}} onClick={()=>{setArticle(article);setSArticle(true)}} >
@@ -288,7 +292,7 @@ function Posts({firstcall}) {
                                         <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',bottom:0,right:10}} >{date_num} on {hour}</p>
                                     </div>
                                     <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',maxHeight:'2em',lineHeight:'1.2em',overflow:'hidden'}} >{article.body}</p>
-                                    {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                                    {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                                 </div>
                         )
                     })

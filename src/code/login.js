@@ -32,7 +32,7 @@ function Login() {
                     "password":pwd
                 }
                 try {
-                    const response = await fetch(`/api/user/login`, {
+                    const response = await fetch(`http://localhost:8080/user/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ function Login() {
                     });
                     if (response.ok) {
                         const res = await response.json()
-                        window.sessionStorage.setItem('token',res.token)
+                        window.localStorage.setItem('token',res.token)
                         window.location.assign("/")
                     }else{
                         setMsg('wrong email or password!')

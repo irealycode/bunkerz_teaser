@@ -6,9 +6,7 @@ import * as jose from 'jose';
 import {addr,port} from './imports/imp'
 
 
-let height = window.innerHeight
-let width = window.innerWidth
-export function Head({token,setPost}) {
+export function Head({token,setPost,width,height}) {
 
     const [openAccWindow,setOpenAccWindow] = React.useState(false)
     
@@ -85,7 +83,7 @@ export function Head({token,setPost}) {
             {width <= 590?<div className="addpost" style={{cursor:'pointer',position:'absolute',bottom:50,width:170,left:10}} >
                 <button onClick={()=>{setPost(true);setOpenAccWindow(false)}} style={{width:170}} >Add post</button>
             </div>:null}
-            <div onClick={()=>{sessionStorage.removeItem("token");window.location="/login"}} style={{cursor:'pointer',position:'absolute',bottom:10,borderRadius:10,width:170,left:10,height:32,borderRadius:10,boxSizing:'border-box',border:'1px solid rgb(255, 185, 79)',display:'flex',justifyContent:'center',alignItems:'center'}} >
+            <div onClick={()=>{localStorage.removeItem("token");window.location="/login"}} style={{cursor:'pointer',position:'absolute',bottom:10,borderRadius:10,width:170,left:10,height:32,borderRadius:10,boxSizing:'border-box',border:'1px solid rgb(255, 185, 79)',display:'flex',justifyContent:'center',alignItems:'center'}} >
                 <p style={{fontWeight:'bolder',color:'rgb(255, 185, 79)',font:"16px/1.4 'Open Sans', arial, sans-serif"}} >Log out</p>
             </div>
         </div>}
@@ -94,13 +92,18 @@ export function Head({token,setPost}) {
 }
 
 
-export function AddPost({setPost}) {
+
+
+export function AddPost({setPost,width,height}) {
     const [image,setImage] = React.useState(null)
     const [loading,setLoading] = React.useState(0)
     const [title,setTitle] = React.useState('')
     const [body,setBody] = React.useState('')
-    const token = window.sessionStorage.getItem('token')
 
+    const token = window.localStorage.getItem('token')
+
+
+ 
 
 
     async function upload_image(){
@@ -109,7 +112,7 @@ export function AddPost({setPost}) {
             formData.append('file', image);
             formData.append('type','post');
             try {
-                const response = await fetch(`/api/upload`,{
+                const response = await fetch(`http://localhost:8080/upload`,{
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json'
@@ -145,7 +148,7 @@ export function AddPost({setPost}) {
                     "title": title
                   }
                 console.log('data:',data)
-                const response = await fetch(`/api/posts`, {
+                const response = await fetch(`http://localhost:8080/posts`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -157,6 +160,7 @@ export function AddPost({setPost}) {
                     const res = await response.json()
                     console.log(res)
                     setLoading(2)
+                    setPost(false)
                 }
             } catch{
                 console.log('error')
@@ -198,14 +202,21 @@ export function AddPost({setPost}) {
 }
 
 function Home() {
-    let height = window.innerHeight
-    let width = window.innerWidth
     const [page,setPage] = React.useState(0)
     const [isAdmin,setAdmin] = React.useState(false)
     const [isPost,setPost] = React.useState(false)
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
     const JWTsecret = new TextEncoder().encode(process.env.REACT_APP_JWTsecret)
     const [openAccWindow,setOpenAccWindow] = React.useState(false)
+    const [width,setWidth] = React.useState(window.innerWidth)
+    const [height,setHeight] = React.useState(window.innerHeight)
+
+
+
+    window.addEventListener('resize', function() {
+        setWidth(window.innerWidth)
+        setHeight(window.innerHeight)
+    });
 
     
 
@@ -242,9 +253,9 @@ function Home() {
   return (
     <div style={{width:'100%',height:'100%',position:'relative'}} >
 
-     <Head token={token} setPost={setPost} />
+     <Head token={token} setPost={setPost} width={width} height={height} />
      {
-        isPost?<AddPost setPost={setPost}/>:null
+        isPost?<AddPost setPost={setPost} width={width} height={height} />:null
      }
 
 
@@ -290,13 +301,13 @@ function Home() {
         </div>
         <div style={{width:width>=800?width-200:width-20,alignSelf:'center',height:height-100,backgroundColor:'white',position:'absolute',top:100,left:width>=800?200:10,zIndex:-1}} >
             {
-                page==0?<News firstcall={0}/>:null
+                page==0?<News firstcall={0} width={width} height={height}  />:null
             }
             {
-                page==1?<Teasers/>:null
+                page==1?<Teasers width={width} height={height} />:null
             }
             {
-                page==2?<Posts firstcall={0}/>:null
+                page==2?<Posts firstcall={0} width={width} height={height} />:null
             }
         </div>
 

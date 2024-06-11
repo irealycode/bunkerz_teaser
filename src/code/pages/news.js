@@ -3,9 +3,7 @@ import {addr,port} from '../imports/imp'
 
 
 
-function News({firstcall}) {
-    let height = window.innerHeight
-    let width = window.innerWidth
+function News({firstcall,width,height}) {
 
     const [showPwd,setShowPwd] = React.useState(false)
     const [news,setNews] = React.useState([])
@@ -21,7 +19,7 @@ function News({firstcall}) {
             firstcall++
             try {
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-                const response = await fetch(`/api/news`, {
+                const response = await fetch(`http://localhost:8080/news`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

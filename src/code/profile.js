@@ -24,7 +24,7 @@ function EditProfile({setShowEditProfile,setProfile,profile}) {
                     "lastName": lastname
                   }
                 console.log('data:',data)
-                const response = await fetch(`http://localhost:8080/user/profile`, {
+                const response = await fetch(`/api/user/profile`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function Profile() {
         if (!firstcall) {
             firstcall++
             try {
-                const response = await fetch(`http://localhost:8080/user/profile`, {
+                const response = await fetch(`/api/user/profile`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function Profile() {
                                                 <p style={{fontFamily:'mc',fontSize:13,marginTop:0,color:'#545049',marginLeft:0,position:'absolute',top:10,right:10}} >{date_num} on {hour}</p>
                                             </div>
                                             <p style={{fontFamily:'mc',fontSize:17,color:'#545049',marginLeft:15,whiteSpace:'pre-line',maxHeight:'2em',lineHeight:'1.2em',overflow:'hidden'}} >{article.body}</p>
-                                            {article.image_link!="NOMEDIA"?<img src={`http://localhost:8080/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
+                                            {article.image_link!="NOMEDIA"?<img src={`/api/upload?link=./posts/${article.image_link}`} style={{width:'90%',borderRadius:10,marginLeft:'5%'}} />:null}
                                         </div>
                                 )
                             }).reverse():null
